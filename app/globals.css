@@ -1,26 +1,76 @@
+/* app/globals.css */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Brand tokens (Tailwind v4 style) */
+:root{
+  --color-cocoa: #652d1a;   /* deep chocolate #3b2416; */
+  --color-gold: #cdaA4a;    /* luxury gold - tweak if needed */
+  --color-cream: #F7EFE6;   /* paper / cream */
+  --color-accent: #1f130f;
+  --surface: #fff;
+  
 }
+
+/* theme inline for tailwind to create utilities (Tailwind v4) */
+/* @theme inline {
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-accent);
+
+  --cocoa: var(--color-cocoa);
+  --gold: var(--color-gold);
+  --cream: var(--color-cream);
+  --accent: var(--color-accent);
+
+  --font-script: "Pacifico", cursive;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+} */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* required base colors */
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-accent);
+
+  /* your custom colors */
+  --color-cocoa: var(--color-cocoa);
+  --color-gold: var(--color-gold);
+  --color-cream: var(--color-cream);
+  --color-accent: var(--color-accent);
+
+  /* fonts */
+  --font-script: "Pacifico", cursive;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
+/* page base */
+html,body,#__next { height: 100%; }
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cocoa);
+  color: var(--color-accent);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* utility-ish components */
+.btn-gold {
+  background: linear-gradient(180deg,var(--color-gold), #b78f3a);
+  color: white;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.product-frame {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(31,19,15,0.06);
+}
+
+/* make .text-gold / .bg-cocoa etc available (Tailwind v4 will pick them up via @theme) */
