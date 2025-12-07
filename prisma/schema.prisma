@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------
+// CUSTOMER
+// -----------------------------------------------------------
+model Customer {
+  id        Int      @id @default(autoincrement())
+  fullName  String
+  phone     String   @unique
+  email     String   @unique
+  city      String
+  postalCode String?
+  address   String
+
+  orders    Order[]
+
+  createdAt DateTime @default(now())
+}
+
+// -----------------------------------------------------------
+// ORDER
+// -----------------------------------------------------------
+model Order {
+  id              Int       @id @default(autoincrement())
+  customer        Customer  @relation(fields: [customerId], references: [id])
+  customerId      Int
+
+  subtotal        Int
+  productDiscount Int
+  deliveryFee     Int
+  deliveryDiscount Int
+  totalPayable    Int
+  paymentMethod   String
+  paymentStatus   String @default("pending")
+
+  status          OrderStatus @default(PENDING)
+  statusTimeline  OrderStatusHistory[]
+
+  logisticPartner String?
+  trackingId      String?
+  logisticPrice   Int?
+  expectedDelivery DateTime?
+  deliveredAt     DateTime?
+
+  note            String?
+  items           OrderItem[]
+  review          Review?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// -----------------------------------------------------------
+// ORDER ITEMS
+// -----------------------------------------------------------
+model OrderItem {
+  id          Int     @id @default(autoincrement())
+  order       Order   @relation(fields: [orderId], references: [id])
+  orderId     Int
+
+  productId   String
+  name        String
+  price       Int
+  sellingPrice Int
+  qty         Int
+  image       String?
+
+  createdAt   DateTime @default(now())
+}
+
+// -----------------------------------------------------------
+// ORDER STATUS TIMELINE
+// -----------------------------------------------------------
+model OrderStatusHistory {
+  id        Int      @id @default(autoincrement())
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   Int
+
+  status    OrderStatus
+  timestamp DateTime @default(now())
+  note      String?
+}
+
+// -----------------------------------------------------------
+// REVIEW
+// -----------------------------------------------------------
+model Review {
+  id        Int      @id @default(autoincrement())
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   Int      @unique
+
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  DISPATCHED
+  IN_TRANSIT
+  DELIVERED
+  CANCELLED
+}

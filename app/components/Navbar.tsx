@@ -3,10 +3,13 @@
 import { useState } from "react";
 import { ShoppingBag } from "lucide-react";
 import Image from "next/image";
+import { useCartDrawer } from "../context/CartDrawerContext";
+import { useCart } from "../context/CartContext";
 
 export default function Navbar() {
   // You can replace this with your global cart state later
-  const [cartCount] = useState(3); 
+   const { openCart } = useCartDrawer();
+    const { cartCount } = useCart();
 
   return (
     <nav className="absolute top-0 left-0 w-full z-20">
@@ -23,7 +26,7 @@ export default function Navbar() {
         </div>
 
         {/* CART ICON */}
-        <div className="relative ml-auto cursor-pointer">
+        <div onClick={openCart} className="relative ml-auto cursor-pointer">
           <ShoppingBag size={26} className="text-white" />
 
           {/* BADGE */}
