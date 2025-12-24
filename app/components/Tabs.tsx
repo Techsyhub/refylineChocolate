@@ -20,10 +20,10 @@
 //       </div>
 
 //       <div className="mt-4 text-gray-700">
-//         {active==='details' && <p>Premium cocoa nibs blended with organic nuts and natural sweeteners. Nutrient dense and crafted for taste.</p>}
-//         {active==='how' && <p>The formula uses cold-pressed oils and low-temperature tempering to preserve nutrients and flavor.</p>}
-//         {active==='use' && <p>Consume 1 bar daily as a snack, best alongside warm tea or coffee.</p>}
-//         {active==='ingredients' && <p>Sourced cocoa, organic almonds, coconut sugar, chia seeds, natural vanilla.</p>}
+//         {active==='details' && <p className='text-sm md:text-base'>Premium cocoa nibs blended with organic nuts and natural sweeteners. Nutrient dense and crafted for taste.</p>}
+//         {active==='how' && <p className='text-sm md:text-base'>The formula uses cold-pressed oils and low-temperature tempering to preserve nutrients and flavor.</p>}
+//         {active==='use' && <p className='text-sm md:text-base'>Consume 1 bar daily as a snack, best alongside warm tea or coffee.</p>}
+//         {active==='ingredients' && <p className='text-sm md:text-base'>Sourced cocoa, organic almonds, coconut sugar, chia seeds, natural vanilla.</p>}
 //       </div>
 //     </div>
 //   );
@@ -79,7 +79,7 @@
 //           <div className="space-y-3">
 //             <div className="flex items-start gap-2">
 //               <Info size={20} className="text-gold mt-1" />
-//               <p>
+//               <p className='text-sm md:text-base'>
 //                 Refyline <strong>NutriBites</strong> are handcrafted premium
 //                 energy bites made from <strong>100% natural ingredients</strong> —
 //                 including dates, walnuts, seeds, and antioxidant-rich cocoa.
@@ -88,7 +88,7 @@
 
 //             <div className="flex items-start gap-2">
 //               <CheckCircle2 size={20} className="text-gold mt-1" />
-//               <p>
+//               <p className='text-sm md:text-base'>
 //                 Every bite delivers clean energy, improved focus, and deep nourishment
 //                 without refined sugar or preservatives.
 //               </p>
@@ -96,7 +96,7 @@
 
 //             <div className="flex items-start gap-2">
 //               <CheckCircle2 size={20} className="text-gold mt-1" />
-//               <p>
+//               <p className='text-sm md:text-base'>
 //                 Each box contains <strong>8 NutriBites (250g)</strong> — crafted to
 //                 elevate your daily wellness ritual.
 //               </p>
@@ -112,7 +112,7 @@
 //               <h3 className="font-semibold text-cocoa">The Refyline Method</h3>
 //             </div>
 
-//             <p>
+//             <p className='text-sm md:text-base'>
 //               NutriBites are produced using a <strong>cold-process technique</strong>
 //               that preserves natural nutrients, healthy fats, minerals, and antioxidants.
 //             </p>
@@ -160,7 +160,7 @@
 //               </li>
 //             </ul>
 
-//             <p>
+//             <p className='text-sm md:text-base'>
 //               For the <strong>best texture and crunch</strong>, enjoy your NutriBites
 //               slightly chilled.
 //             </p>
@@ -268,7 +268,7 @@
 //           <div className="space-y-3">
 //             <div className="flex items-start gap-2">
 //               <Info size={20} className="text-gold mt-1" />
-//               <p>
+//               <p className='text-sm md:text-base'>
 //                 Refyline <strong>NutriBites</strong> are handcrafted premium
 //                 energy bites made from <strong>100% natural ingredients</strong>.
 //               </p>
@@ -276,7 +276,7 @@
 
 //             <div className="flex items-start gap-2">
 //               <CheckCircle2 size={20} className="text-gold mt-1" />
-//               <p>
+//               <p className='text-sm md:text-base'>
 //                 Nutrient-dense blend of dates, nuts, seeds & dark chocolate —
 //                 designed for clean energy & daily nourishment.
 //               </p>
@@ -284,7 +284,7 @@
 
 //             <div className="flex items-start gap-2">
 //               <CheckCircle2 size={20} className="text-gold mt-1" />
-//               <p>
+//               <p className='text-sm md:text-base'>
 //                 Each box contains <strong>8 NutriBites (250g)</strong>.
 //               </p>
 //             </div>
@@ -380,7 +380,7 @@
 //               <h3 className="font-semibold text-cocoa">The Refyline Method</h3>
 //             </div>
 
-//             <p>
+//             <p className='text-sm md:text-base'>
 //               NutriBites are crafted using a <strong>cold-press technique</strong> to preserve maximum nutrients & natural sweetness.
 //             </p>
 
@@ -408,7 +408,7 @@
 //               <h3 className="font-semibold text-cocoa">Daily Usage Guide</h3>
 //             </div>
 
-//             <p>For best texture & crispness, enjoy chilled.</p>
+//             <p className='text-sm md:text-base'>For best texture & crispness, enjoy chilled.</p>
 
 //             <ul className="space-y-2">
 //               <li className="flex items-start gap-2">
@@ -490,14 +490,14 @@ export default function Tabs() {
   return (
     <div className="mt-8">
       {/* TAB BUTTONS */}
-      <div className="flex gap-6 border-b border-gray-300 pb-3 overflow-x-auto">
+      <div className="flex gap-6 border-b border-gray-300 overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
             onClick={() => setActive(t.id)}
-            className={`pb-2 whitespace-nowrap text-sm md:text-base ${
+            className={`pb-2 whitespace-nowrap z-10  ${
               active === t.id
-                ? 'border-b-2 border-gold text-cocoa font-semibold'
+                ? 'border-b-4 border-gold text-cocoa font-semibold'
                 : 'text-gray-500 hover:text-cocoa'
             }`}
           >
@@ -507,30 +507,30 @@ export default function Tabs() {
       </div>
 
       {/* TAB CONTENT */}
-      <div className="mt-6 text-gray-700 leading-relaxed space-y-4">
+      <div className="mt-6 px-4 md:px-0 text-gray-700 leading-relaxed space-y-4">
 
         {/* BRAND STORY */}
         {active === 'story' && (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-cocoa">Pakistan’s First Healthy Chocolate Ritual</h2>
 
-            <p>
+            <p className='text-sm md:text-base'>
               There was a time when cravings meant guilt. When “healthy snacks” meant compromises.  
               And when Pakistan had no premium chocolate brand of its own — one that was clean,
               honest, beautifully crafted, and made for every age, every lifestyle, every home.
             </p>
 
-            <p>
+            <p className='text-sm md:text-base'>
               So we created <span className="font-semibold text-cocoa">Refyline</span> — a brand born from the belief that
               <span className="font-semibold"> health and taste should never compete.</span>
             </p>
 
-            <p>
+            <p className='text-sm md:text-base'>
               Our NutriBites are handcrafted in small batches using pure dates, nuts, superseeds,
               and rich cocoa — indulgent in flavor yet nourishing for daily wellness.
             </p>
 
-            <p>
+            <p className='text-sm md:text-base'>
               This isn’t just a snack. It’s a ritual — a moment of calm, a mother’s love, a 
               guilt-free treat for diabetics, a partner for your harmonal balance fight and a reliable energy source for students, professionals, athletes, and elders.
             </p>
@@ -547,13 +547,13 @@ export default function Tabs() {
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-cocoa">How It Works</h2>
 
-            <p>
+            <p className='text-sm md:text-base'>
               Refyline NutriBites are crafted using a low-temperature process that preserves the natural
               nutrients of dates, nuts, and superseeds. Unlike commercial chocolates, we use no
               refined sugar, no preservatives, and no artificial flavors.
             </p>
 
-            <p>
+            <p className='text-sm md:text-base'>
               Every bite provides slow-release energy, brain-boosting Omega-3 fats, essential minerals,
               and antioxidant-rich cocoa — giving your body nourishment that lasts.
             </p>
@@ -656,27 +656,27 @@ export default function Tabs() {
             <div className="space-y-4">
               <div className="flex gap-3 items-start">
                 <Leaf className="text-gold mt-1" />
-                <p><strong>Premium Dates</strong> — Natural sweetness rich in fiber & minerals.</p>
+                <p className='text-sm md:text-base'><strong>Premium Dates</strong> — Natural sweetness rich in fiber & minerals.</p>
               </div>
 
               <div className="flex gap-3 items-start">
                 <Brain className="text-gold mt-1" />
-                <p><strong>Walnuts & Almonds</strong> — Omega-3, Vitamin-E & healthy fats for brain and heart health.</p>
+                <p className='text-sm md:text-base'><strong>Walnuts & Almonds</strong> — Omega-3, Vitamin-E & healthy fats for brain and heart health.</p>
               </div>
 
               <div className="flex gap-3 items-start">
                 <Shield className="text-gold mt-1" />
-                <p><strong>Pumpkin, Sesame & Flax Seeds</strong> — Strengthen immunity and digestion.</p>
+                <p className='text-sm md:text-base'><strong>Pumpkin, Sesame & Flax Seeds</strong> — Strengthen immunity and digestion.</p>
               </div>
 
               <div className="flex gap-3 items-start">
                 <Flame className="text-gold mt-1" />
-                <p><strong>Dark Chocolate & Pure Cocoa</strong> — Deep, antioxidant-rich, signature Refyline taste.</p>
+                <p className='text-sm md:text-base'><strong>Dark Chocolate & Pure Cocoa</strong> — Deep, antioxidant-rich, signature Refyline taste.</p>
               </div>
 
               <div className="flex gap-3 items-start">
                 <Droplets className="text-gold mt-1" />
-                <p><strong>Cinnamon & Natural Notes</strong> — Warm, soothing finish with natural aromatics.</p>
+                <p className='text-sm md:text-base'><strong>Cinnamon & Natural Notes</strong> — Warm, soothing finish with natural aromatics.</p>
               </div>
 
               <p className="text-sm text-gray-600 pt-2">

@@ -3,9 +3,13 @@ import { useState } from "react";
 
 export default function ProductSlider() {
   const images = [
-    "/nutriball_1.png",
-    "/nutriball_2.png",
-    "/nutriball_3.png",
+    "6.jpeg",
+      "8.jpeg",
+    "7.jpeg",
+    "2.jpeg",
+    "5.jpeg",
+    // "3.jpeg",
+    "4.jpeg",
   ];
 
   const [active, setActive] = useState(0);
@@ -13,12 +17,12 @@ export default function ProductSlider() {
   return (
     <div className="w-full">
       {/* Main Image */}
-      <div className="product-frame   overflow-hidden card flex items-center justify-center h-[700px]">
+      <div className="product-frame overflow-hidden card flex items-center justify-center h-[500px] md:h-[700px]">
         <img
           key={active}
           src={images[active]}
           alt="Refyline Product"
-          className="w-full h-full object-contain bg-cream transition-all duration-500"
+          className="w-full h-full object-cover bg-cream transition-all duration-500"
         />
       </div>
 

@@ -152,6 +152,7 @@
 
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prisma";
+import { calculateLogisticPrice, calculateTotalOrderWeight, gramsToKg } from "@/app/libs/analytics";
 
 export async function POST(req: Request) {
   try {
@@ -196,6 +197,13 @@ export async function POST(req: Request) {
     const totalPayable = totalAmount //|| subtotal - productDiscount + deliveryFee;
     // const deliveryDiscount = 0; // Adjust if you have delivery discounts
 
+
+
+
+
+const logisticPrice = calculateLogisticPrice(items, customer.city);
+
+
     // 2. Create order
     const order = await prisma.order.create({
       data: {
@@ -211,7 +219,7 @@ export async function POST(req: Request) {
         note: notes || "",
         logisticPartner: logisticInfo?.partner || null,
         trackingId: logisticInfo?.trackingId || null,
-        logisticPrice: logisticInfo?.partnerDeliveryCost || null,
+        logisticPrice: logisticPrice || null,
         items: {
           create: items.map((item: any) => ({
             productId: item.id,

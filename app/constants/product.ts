@@ -1,0 +1,11 @@
+export const SINGLE_PRODUCT = "Refyline Healthy NutriBites";
+export const DUO_BUNDLE = "The Perfect Pair";
+export const TRIO_BUNDLE = "Trio Family Pack";
+export const SAME_CITY_LOGISTIC_1KG_FEE = 160;
+export const SAME_CITY_LOGISTIC_OVERHEAD_PERKG_FEE = 70;
+export const OUT_OF_CITY_LOGISTIC_1KG_FEE = 250;
+export const OUT_OF_CITY_LOGISTIC_OVERHEAD_PERKG_FEE = 130;
+export const CONTACT_NO= "+923357740860"
+export const CONTACT_EMAIL= "official@refyline.com"
+export const FB_ACCOUNT="https://facebook.com/refylineofficial"
+export const INSTAGRAM_ACCOUNT="https://instagram.com/refyline"

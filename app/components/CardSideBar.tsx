@@ -119,6 +119,7 @@ import { useCart } from "@/app/context/CartContext";
 import { X, ShoppingCart, Trash2 } from "lucide-react";
 import { useCartDrawer } from "@/app/context/CartDrawerContext";
 import { useRouter } from "next/navigation";
+import { calculateLogisticPrice, calculateTotalOrderWeight, gramsToKg } from "../libs/analytics";
 
 export default function CartSidebar() {
   const { cart, cartCount, updateQty, removeFromCart } = useCart();
@@ -171,6 +172,11 @@ const router = useRouter()
 // DELIVERY FEE
 const DELIVERY_FEE = 250;
 
+//    const totalGrams = calculateTotalOrderWeight(items);
+// const weightKg = gramsToKg(totalGrams);
+
+// const DELIVERY_FEE = calculateLogisticPrice(weightKg, customer.city);
+
 // Count product types
 let singleQty = 0;
 let hasDuo = false;
@@ -214,25 +220,25 @@ const deliveryCost = DELIVERY_FEE - deliveryDiscount;
 // ----------------------------
 // PRODUCT DISCOUNT ALREADY CORRECT
 // ----------------------------
-const totalDiscount = cart.reduce(
+const totalDiscount = Math.ceil(cart.reduce(
   (sum, item) =>
     sum +
     (Number(item.sellingPrice) * item.qty -
       Number(item.price) * item.qty),
   0
-);
+))
 
 // SUBTOTAL
-const subtotal = cart.reduce(
+const subtotal = Math.ceil(cart.reduce(
   (sum, item) => sum + Number(item.price) * item.qty,
   0
-);
+))
 
 // TOTAL SAVING
-const totalSaving = totalDiscount + deliveryDiscount;
+const totalSaving = Math.ceil(totalDiscount + deliveryDiscount);
 
 // FINAL AMOUNT
-const totalAmount = subtotal + deliveryCost;
+const totalAmount = Math.ceil(subtotal + deliveryCost);
 
 
   return (
@@ -340,7 +346,7 @@ const totalAmount = subtotal + deliveryCost;
           <div className="border-t pt-4 mt-4 space-y-2 text-sm text-cocoa font-medium">
             <div className="flex justify-between">
               <span>Price Discount:</span>
-              <span>Rs {totalDiscount}</span>
+              <span>Rs {Math.ceil(totalDiscount)}</span>
             </div>
 
             <div className="flex justify-between">
@@ -367,7 +373,10 @@ const totalAmount = subtotal + deliveryCost;
         {/* Checkout */}
         {cart.length > 0 && (
           <button
-          onClick={()=> router.push("/checkout") }
+          onClick={()=> {
+            closeCart()
+            router.push("/checkout")
+          } }
           className="bg-cocoa text-cream font-bold w-full py-3 rounded-full mt-4">
             Checkout
           </button>

@@ -12,7 +12,7 @@ import { useCartDrawer } from "../context/CartDrawerContext";
 
   const singleProduct = {
     id: "single-1",
-    name: "Refyline Healthy NutriBar",
+    name: "Refyline Healthy NutriBites",
     sellingPrice:1950 ,
     price: 1450,
     image: "/nutriball_1.png",
@@ -54,13 +54,13 @@ export default function ProductDetails() {
 
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-10">
+    <main className=" w-full md:max-w-6xl mx-auto px-2 md:py-10">
       {/* top grid */}
-      <div className="grid md:grid-cols-2 gap-8 items-start space-y-5 mt-10
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-start space-y-5 mt-10
   bg-cream 
   border border-[#e8d7c5]
   shadow-[0_8px_30px_rgba(0,0,0,0.08)]
-  rounded-2xl p-8
+  rounded-2xl p-2 pb-10 md:p-8
   z-20">
         {/* left: hero */}
         {/* <div>
@@ -79,16 +79,16 @@ export default function ProductDetails() {
         <ProductSlider />
 
         {/* right: details */}
-        <div
+        <div className='px-4 md:px-0'
         // className='  relative'
         >
           <h1 className="text-3xl md:text-4xl font-black font-serif text-gold">
             {singleProduct.name}
           </h1>
 
-          <div className="flex items-center gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
             <div>
-              <div className="flex items-center gap-2 text-gold">
+              <div className="flex items-start  md:items-center gap-2 text-gold">
                 <div className="text-xl">★★★★★</div>
                 <div className="text-sm text-accent">(287)</div>
               </div>
@@ -96,7 +96,7 @@ export default function ProductDetails() {
               <div className="text-sm line-through text-gray-400">Rs. {singleProduct.sellingPrice}</div>
             </div>
 
-            <div className="ml-auto">
+            <div className="md:ml-auto">
               <div className="flex gap-2 text-xs text-gray-600">
                 <span className="px-2 py-1 border rounded">Trusted</span>
                 <span className="px-2 py-1 border rounded">Ships Nationwide</span>
@@ -133,7 +133,7 @@ export default function ProductDetails() {
                 </button> */}
             <button 
             onClick={()=>openCart()}
-            className="btn-gold px-6 py-3 flex items-center justify-center gap-2 text-cocoa hover:opacity-85 rounded-full"
+            className="btn-gold px-6 py-3 flex items-center justify-center gap-1 md:gap-2 text-cocoa hover:opacity-85 rounded-full"
             //  onClick={() => {
             //    const newQty = Math.max(1, singleValue + 1);
             //         singleInCart ? updateQty(singleProduct.id, newQty) : addToCart( singleProduct,newQty);
@@ -141,7 +141,7 @@ export default function ProductDetails() {
             >
                <ShoppingCart className='text-black' size={22} />
 
-              <p className='text-black font-semibold'>View Cart</p>
+              <p className='text-black text-sm md:text-base font-semibold'>View Cart</p>
             </button>
             {/* <button className="px-6 py-3 border rounded-full">Buy now</button> */}
           </div>
@@ -166,30 +166,30 @@ export default function ProductDetails() {
         </div>
 
         {/* Bundle Cards */}
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2">
 
           {/* DUO BUNDLE */}
           <div className=" p-6 px-8 relative overflow-hidden">
             {/* Product Image */}
             <div className="flex justify-center">
               <img
-                src="/nutriball_1.png"
+                src="/2boxes.png"
                 alt="Duo Bundle"
-                className="w-56 h-auto object-contain rounded-t-2xl"
+                className="w-full h-auto object-contain rounded-t-2xl"
               />
             </div>
 
             {/* Golden Ribbon */}
-            <div className="flex justify-center -mt-52">
+            {/* <div className="flex justify-center -mt-34 md:-mt-52">
               <img
                 src="/duo-bundle2.png"
                 alt="Save Rs 100"
                 className="w-96 select-none pointer-events-none"
               />
-            </div>
+            </div> */}
 
             {/* Content */}
-            <div className="text-center -mt-20">
+            <div className="text-center mt-5">
               <h3 className="text-2xl font-semibold text-cocoa">{duoBundle.name}</h3>
               <p className="text-gray-600 mt-2">
                 A perfect balance for healthy indulgence perfect for couples.
@@ -226,51 +226,27 @@ export default function ProductDetails() {
                   </button>
                 </div>
 
-                {/* ADD TO CART (ICON BUTTON) */}
-                <button
-                onClick={()=>openCart()}
-                  className="
-                      flex items-center gap-2
-                      px-6 py-2.5 outline-1
-                      outline-cocoa text-cocoa
-                      rounded-full
-                      shadow-md
-                      hover:bg-cocoa hover:text-gold transition
-
-                    "
-                >
-                  <ShoppingCart size={24} />
-
-                </button>
+              
+              
 
                 {/* BUY NOW (GOLD BUTTON) */}
                 <button
+                 onClick={()=>openCart()}
                   className="
-      px-6 py-3
-      rounded-full
-      bg-gold text-black
-      font-semibold
-      shadow-lg
-      hover:brightness-90 transition
-    "
+                  flex gap-1
+                  px-6 py-3
+                  rounded-full
+                  bg-gold text-black
+                  font-semibold
+                  shadow-lg
+                  hover:brightness-90 transition
+                "
                 >
-                  Buy Now
+                 <ShoppingCart size={24} /> <p>View Cart</p>
                 </button>
               </div>
 
-              {/* <div className="flex items-center gap-4 mt-3">
-    <div className="flex items-center gap-2 border rounded p-2">
-      <button onClick={() => setQty(q => Math.max(1, q - 1))} className="px-3">-</button>
-      <div className="px-4 font-semibold">{qty}</div>
-      <button onClick={() => setQty(q => q + 1)} className="px-3">+</button>
-    </div>
-
-    <button className="btn-gold px-6 py-3 rounded-full">Add to cart</button>
-    <button className="px-6 py-3 border rounded-full">Buy now</button>
-  </div> */}
-              {/* <button className="mt-5 w-full bg-cocoa text-white py-3 rounded-xl text-sm font-semibold hover:bg-[#4a2615] transition">
-          Add to Cart
-        </button> */}
+              
             </div>
           </div>
 
@@ -278,23 +254,14 @@ export default function ProductDetails() {
             {/* Product Image */}
             <div className="flex justify-center">
               <img
-                src="/nutriball_1.png"
+                src="/4boxes.png"
                 alt="Duo Bundle"
-                className="w-56 h-auto object-contain rounded-t-2xl"
-              />
-            </div>
-
-            {/* Golden Ribbon */}
-            <div className="flex justify-center -mt-52">
-              <img
-                src="/trio-bundle.png"
-                alt="Save Rs 100"
-                className="w-96 select-none pointer-events-none"
+                className="w-full h-auto object-contain rounded-t-2xl"
               />
             </div>
 
             {/* Content */}
-            <div className="text-center -mt-20">
+            <div className="text-center mt-5 ">
               <h3 className="text-2xl font-semibold text-cocoa">The Ultimate Value</h3>
               <p className="text-gray-600 mt-2">
                 A wholesome triple pack made for families, gifting, and weekly rituals.
@@ -334,34 +301,20 @@ export default function ProductDetails() {
 
                 {/* ADD TO CART (ICON BUTTON) */}
                 <button
-                onClick={()=>openCart()}
+                 onClick={()=>openCart()}
                   className="
-      flex items-center gap-2
-      px-6 py-2.5 outline-1
-      outline-cocoa text-cocoa
-      rounded-full
-      shadow-md
-      hover:bg-cocoa hover:text-gold transition
-
-    "
+                  flex gap-1
+                  px-6 py-3
+                  rounded-full
+                  bg-gold text-black
+                  font-semibold
+                  shadow-lg
+                  hover:brightness-90 transition
+                "
                 >
-                  <ShoppingCart size={24} />
-
+                 <ShoppingCart size={24} /> <p>View Cart</p>
                 </button>
-
-                {/* BUY NOW (GOLD BUTTON) */}
-                <button
-                  className="
-      px-6 py-3
-      rounded-full
-      bg-gold text-black
-      font-semibold
-      shadow-lg
-      hover:brightness-90 transition
-    "
-                >
-                  Buy Now
-                </button>
+                
               </div>
               {/* <div className="flex items-center gap-4 mt-3">
     <div className="flex items-center gap-2 border rounded p-2">

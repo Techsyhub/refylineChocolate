@@ -91,15 +91,56 @@ model OrderStatusHistory {
 // -----------------------------------------------------------
 // REVIEW
 // -----------------------------------------------------------
+// model Review {
+//  id        Int      @id @default(autoincrement())
+//  order     Order    @relation(fields: [orderId], references: [id])
+//  orderId   Int      @unique
+
+//  rating    Int
+//  comment   String?
+//  createdAt DateTime @default(now())
+//}
+
+
 model Review {
-  id        Int      @id @default(autoincrement())
-  order     Order    @relation(fields: [orderId], references: [id])
-  orderId   Int      @unique
+  id        Int       @id @default(autoincrement())
+  order     Order?    @relation(fields: [orderId], references: [id])
+  orderId   Int?      @unique
 
   rating    Int
   comment   String?
+  status    ReviewStatus @default(PENDING) // pending / approved / rejected
+  customerFirstName String
+  customerLastName  String?
+  customerEmail     String
+  files     ReviewFile[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ReviewFile {
+  id       Int     @id @default(autoincrement())
+  review   Review  @relation(fields: [reviewId], references: [id])
+  reviewId Int
+
+  url      String  // Cloudinary URL
+  type     FileType // IMAGE or VIDEO
+
   createdAt DateTime @default(now())
 }
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum FileType {
+  IMAGE
+  VIDEO
+}
+
 
 enum OrderStatus {
   PENDING
@@ -108,4 +149,17 @@ enum OrderStatus {
   IN_TRANSIT
   DELIVERED
   CANCELLED
+}
+
+// -----------------------------------------------------------
+// USER
+// -----------------------------------------------------------
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      String   @default("admin") // can be "admin" or "user"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
