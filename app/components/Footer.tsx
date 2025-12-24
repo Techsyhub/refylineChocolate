@@ -1,7 +1,7 @@
 'use client';
 
 import { Facebook, Instagram, MessageCircle } from "lucide-react";
-import { CONTACT_EMAIL, CONTACT_NO, FB_ACCOUNT, INSTAGRAM_ACCOUNT } from "../constants/product";
+import { CONTACT_EMAIL, CONTACT_NO, FB_ACCOUNT, INSTAGRAM_ACCOUNT } from "../constants/main";
 import Link from "next/link";
 
 export default function Footer() {

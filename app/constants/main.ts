@@ -9,3 +9,5 @@ export const CONTACT_NO= "+923357740860"
 export const CONTACT_EMAIL= "official@refyline.com"
 export const FB_ACCOUNT="https://facebook.com/refylineofficial"
 export const INSTAGRAM_ACCOUNT="https://instagram.com/refyline"
+export const ORDER_START_FROM = 200000;
+export const CCL_KARACHI_STORE_ID = 920;

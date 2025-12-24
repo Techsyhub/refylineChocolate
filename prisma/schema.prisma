@@ -39,6 +39,7 @@ model Order {
   totalPayable    Int
   paymentMethod   String
   paymentStatus   String @default("pending")
+  orderNumber      String?   @unique   
 
   status          OrderStatus @default(PENDING)
   statusTimeline  OrderStatusHistory[]

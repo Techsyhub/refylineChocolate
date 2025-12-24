@@ -1,5 +1,5 @@
 "use client";
-import { DUO_BUNDLE, SINGLE_PRODUCT, TRIO_BUNDLE } from "@/app/constants/product";
+import { DUO_BUNDLE, SINGLE_PRODUCT, TRIO_BUNDLE } from "@/app/constants/main";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Order } from "@prisma/client";
@@ -154,18 +154,20 @@ interface OrderTableProps {
            <thead className="bg-gray-100">
              <tr>
                <th className="p-2 border">S.NO</th>
-               <th className="p-2 border">Tracking</th>
+                 <th className="p-2 border">Order ID</th>
+               <th className="p-2 border">Tracking ID</th>
                <th className="p-2 border">Customer</th>
                <th className="p-2 border">Phone</th>
                <th className="p-2 border">Items</th>    
                 <th className="p-2 border">Notes</th>    
                <th className="p-2 border">Qty</th>
-               <th className="p-2 border">Total</th>
+               <th className="p-2 border">Total Product Bill</th>
                <th className="p-2 border">Delivery Discount</th>
                <th className="p-2 border">City</th>
                <th className="p-2 border">Delivery Address</th>
                <th className="p-2 border">Logistic Partner</th>
                <th className="p-2 border">Logistic Delivery Fee</th>
+                 <th className="p-2 border">Total Bill After Adding Logistic Standard Fee (250 PKR)</th>
                <th className="p-2 border">Payment Method</th>
                <th className="p-2 border">Logistic Fee</th>
                <th className="p-2 border">Status</th>
@@ -179,6 +181,7 @@ interface OrderTableProps {
                return (
                  <tr key={order.id} className="text-center">
                    <td className="p-2 border">{index + 1}</td>
+                   <td className="p-2 border">{order.orderNumber}</td>
                    <td className="p-2 border">{order.trackingId || "—"}</td>
                    <td className="p-2 border">{order.customer?.fullName}</td>
                    <td className="p-2 border">{order.customer?.phone}</td>
@@ -210,9 +213,10 @@ interface OrderTableProps {
 
               <td className="p-2 border">{order.customer.address}</td>
                <td className="p-2 border">{order.logisticPartner || "not assigned"}</td>
-                <td className="p-2 border">{order.logisticPrice|| "not assigned"}</td>
+                <td className="p-2 border">{250-order.deliveryDiscount }</td>
+                 <td className="p-2 border">{order.totalPayable +250-order.deliveryDiscount } PKR </td>
                    <td className="p-2 border">{order.paymentMethod}</td>
-                   <td className="p-2 border">{order.logisticPrice ?? "—"}</td>
+                   <td className="p-2 border">{order.logisticPrice ?? "—"} PKR</td>
                    <td className="p-2 border">{order.status}</td>
                    <td className="p-2 border">
                      <button className="px-2 py-1 mr-2 bg-yellow-500 text-white rounded" onClick={() => openEdit(order)}>Edit</button>

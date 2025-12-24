@@ -313,7 +313,7 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prisma";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
-import { DUO_BUNDLE, TRIO_BUNDLE } from "@/app/constants/product";
+import { DUO_BUNDLE, TRIO_BUNDLE } from "@/app/constants/main";
 
 export async function GET(
   req: Request,

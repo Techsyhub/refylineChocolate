@@ -159,7 +159,7 @@
 
 // app/libs/analytics.ts
 import prisma from "@/app/libs/prisma";
-import { DUO_BUNDLE, OUT_OF_CITY_LOGISTIC_1KG_FEE, OUT_OF_CITY_LOGISTIC_OVERHEAD_PERKG_FEE, SAME_CITY_LOGISTIC_1KG_FEE, SAME_CITY_LOGISTIC_OVERHEAD_PERKG_FEE, SINGLE_PRODUCT, TRIO_BUNDLE } from "../constants/product";
+import { DUO_BUNDLE, OUT_OF_CITY_LOGISTIC_1KG_FEE, OUT_OF_CITY_LOGISTIC_OVERHEAD_PERKG_FEE, SAME_CITY_LOGISTIC_1KG_FEE, SAME_CITY_LOGISTIC_OVERHEAD_PERKG_FEE, SINGLE_PRODUCT, TRIO_BUNDLE } from "../constants/main";
 
 export type DateRange = { from?: Date | null; to?: Date | null };
 
