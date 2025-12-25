@@ -52,7 +52,13 @@ export default function ReviewStepper({ onClose }: { onClose: () => void }) {
     }))
   );
 
-    const payload = { rating, text, first, last, email, files: base64Files };
+    const payload = { 
+      rating, 
+      comment:text, 
+      firstName: first,
+      lastName: last,
+      email, 
+      files: base64Files, };
 
     try {
       await fetch('/api/reviews/add', {

@@ -25,8 +25,16 @@ import prisma from "@/app/libs/prisma";
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const page = Number(searchParams.get("page") || 1);
-  const limit = Number(searchParams.get("limit") || 4);
-  const status = searchParams.get("status") || "APPROVED";
+  const limit = Number(searchParams.get("limit") || 10);
+  
+    // get status as string
+  const statusParam = searchParams.get("status") || "APPROVED";
+
+  // cast/validate to enum
+
+  const validStatuses = ["APPROVED", "REJECTED", "PENDING"] as const;
+  const status: typeof validStatuses[number] = 
+  validStatuses.includes(statusParam as any) ? statusParam as typeof validStatuses[number] : "APPROVED";
 
   const reviews = await prisma.review.findMany({
     where: { status: status },

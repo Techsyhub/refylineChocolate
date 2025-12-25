@@ -103,7 +103,7 @@ export default async function DashboardPage({
 
         <div className="bg-white p-4 rounded shadow">
           {/* <h2 className="font-semibold mb-4">Recent Orders</h2> */}
-          <OrdersTable orders={recentOrders} />
+          <OrdersTable initialOrders={recentOrders} />
         </div>
       {/* </div> */}
     </div>

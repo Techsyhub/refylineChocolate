@@ -5,5 +5,5 @@ export default async function OrdersList() {
   // Fetch orders from DB
   const recentOrders = await getRecentOrders(50);
 
-  return <OrderTable orders={recentOrders} />;
+  return <OrderTable initialOrders={recentOrders} />;
 }

@@ -150,6 +150,7 @@ enum OrderStatus {
   IN_TRANSIT
   DELIVERED
   CANCELLED
+  RETURNED
 }
 
 // -----------------------------------------------------------

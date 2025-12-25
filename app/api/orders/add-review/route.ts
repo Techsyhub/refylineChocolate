@@ -3,17 +3,13 @@ import prisma from "@/app/libs/prisma";
 
 export async function POST(req: Request) {
   try {
-    const { orderId, rating, comment } = await req.json();
+    const data = await req.json();
 
-    if (!orderId || !rating)
+    if (!data.rating)
       return NextResponse.json({ success: false, message: "Missing fields" }, { status: 400 });
 
     const review = await prisma.review.create({
-      data: {
-        orderId,
-        rating,
-        comment: comment || null
-      }
+      data: data
     });
 
     return NextResponse.json({ success: true, review });

@@ -1,11 +1,15 @@
 // app/api/admin/reviews/[id]/status/route.ts
 import prisma from "@/app/libs/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+// export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(
+  req: NextRequest,
+  context: { params: Promise<{ id: string; }>; } // ✅ must be plain object
+) {
   
-  const {id} = await params
-  const reviewId =  await Number(id);
+  const {id} = await context.params;
+  const reviewId =  Number(id);
   const data = await req.json();
   const { status } = data;
 

@@ -2,26 +2,27 @@
 import { DUO_BUNDLE, SINGLE_PRODUCT, TRIO_BUNDLE } from "@/app/constants/main";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Order } from "@prisma/client";
+
 import EditOrderDrawer from "./EditOrderDrawer"; // drawer component we'll create
 import { format } from "date-fns";
+import { Order, OrderStatus, OrderUpdatePayload } from "@/app/types";
 
-type OrderWithRelations = Order & { customer: any; status:string; items: any[] };
+
 
 interface OrderTableProps {
   orders: any[];
 }
 
- export default function OrdersTable({ initialOrders }: { initialOrders: OrderWithRelations[] }) {
+ export default function OrdersTable({ initialOrders }: { initialOrders: Order[] }) {
 
-    const [orders, setOrders] = useState<OrderWithRelations[]>(initialOrders || []);
+    const [orders, setOrders] = useState<Order[]>(initialOrders || []);
   const [page, setPage] = useState(1);
   const [limit] = useState(20);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [total, setTotal] = useState<number | null>(null);
 
-  const [editingOrder, setEditingOrder] = useState<OrderWithRelations | null>(null);
+  const [editingOrder, setEditingOrder] = useState<OrderUpdatePayload | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   async function load(pageToLoad = 1) {
@@ -58,13 +59,13 @@ interface OrderTableProps {
     return () => clearTimeout(t);
   }, [query, statusFilter]);
 
-  const openEdit = (order: OrderWithRelations) => {
+  const openEdit = (order: any) => {
     console.log("order", order)
     setEditingOrder(order);
     setDrawerOpen(true);
   };
 
-  // const onSave = (updatedOrder: OrderWithRelations) => {
+  // const onSave = (updatedOrder: Order) => {
   //   // replace in local state
   //   console.log("orders======", orders);
   //   console.log("updated order=====", updatedOrder)
@@ -78,7 +79,7 @@ interface OrderTableProps {
   //   toast.success("Order updated");
   // };
  
- const onSave = async (updatedOrder: OrderWithRelations) => {
+ const onSave = async (updatedOrder: OrderUpdatePayload) => {
   try {
     // Call API to update order in DB
     const res = await fetch("/api/orders/update", {
@@ -220,7 +221,7 @@ interface OrderTableProps {
                    <td className="p-2 border">{order.status}</td>
                    <td className="p-2 border">
                      <button className="px-2 py-1 mr-2 bg-yellow-500 text-white rounded" onClick={() => openEdit(order)}>Edit</button>
-                     <button
+                     {/* <button
                        className="px-2 py-1 bg-green-600 text-white rounded"
                        onClick={async () => {
                         //  generate receipt / print
@@ -231,7 +232,7 @@ interface OrderTableProps {
                        }}
                      >
                        Receipt
-                     </button>
+                     </button> */}
                    </td>
                  </tr>
                );

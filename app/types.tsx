@@ -38,3 +38,69 @@ export interface AnalyticsData {
     total: number;
   }[];
 }
+
+
+// export type OrderStatus =
+//   | "PENDING"
+//   | "CONFIRMED"
+//   | "DISPATCHED"
+//   | "IN_TRANSIT"
+//   | "DELIVERED"
+//   | "CANCELLED"
+//   | "RETURNED";
+
+// export type Order = {
+//   id: number;
+//   status: OrderStatus;
+//   trackingId?: string | null;
+//   logisticPartner?: string | null;
+// };
+
+export type OrderStatus =
+  | "PENDING"
+  | "CONFIRMED"
+  | "DISPATCHED"
+  | "IN_TRANSIT"
+  | "DELIVERED"
+  | "CANCELLED"
+  | "RETURNED";
+
+export type OrderItem = {
+  id: number;
+  name: string;
+  qty: number;
+};
+
+export type Customer = {
+  fullName: string;
+  phone: string;
+  city: string;
+  address: string;
+};
+
+export type Order = {
+  id: number;
+  orderNumber?: string | null;
+  status: OrderStatus;
+
+  trackingId?: string | null;
+  logisticPartner?: string | null;
+  logisticPrice?: number | null;
+
+  paymentMethod: string;
+  deliveryDiscount: number;
+  totalPayable: number;
+
+  note?: string | null;
+
+  customer: Customer;
+  items: OrderItem[];
+};
+
+export type OrderUpdatePayload = {
+  id: number;
+  status: OrderStatus;
+  trackingId?: string;
+  logisticPartner?: string;
+  logisticPrice?:string|number;
+};
