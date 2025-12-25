@@ -15,7 +15,7 @@ import { useCartDrawer } from "../context/CartDrawerContext";
     name: "Refyline Healthy NutriBites",
     sellingPrice:1950 ,
     price: 1450,
-    image: "/nutriball_1.png",
+    image: "/6.jpeg",
   };
 
   const duoBundle = {
@@ -23,7 +23,7 @@ import { useCartDrawer } from "../context/CartDrawerContext";
     name: "The Perfect Pair",
     sellingPrice:3900 ,
     price: 2800,
-    image: "/nutriball_1.png",
+    image: "/2boxes-thumbnail.png",
   };
 
   const trioBundle = {
@@ -31,7 +31,7 @@ import { useCartDrawer } from "../context/CartDrawerContext";
     name: "Trio Family Pack",
     sellingPrice:5850 ,
     price: 4350,
-    image: "/nutriball_1.png",
+    image: "/4boxes-thumbnail.png",
   };
 
 export default function ProductDetails() {
