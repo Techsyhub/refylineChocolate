@@ -315,11 +315,16 @@ import prisma from "@/app/libs/prisma";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { DUO_BUNDLE, TRIO_BUNDLE } from "@/app/constants/main";
 
+function getParams<T>(params: T): Promise<T> {
+  return Promise.resolve(params);
+}
+
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  const { id } = await params;
+  const { id } = await getParams(params);
+  //  const id = params.id; 
   const orderId = Number(id);
 
   if (isNaN(orderId)) {
